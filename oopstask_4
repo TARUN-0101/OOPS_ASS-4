@@ -1,0 +1,120 @@
+###########################question ##################
+class Node:
+    def _init_(self, data):
+        self.data = data
+        self.next = None
+   
+    def _del_(self):
+        print(f"Element {self.data} deleted")
+ 
+class Stack(Node):
+    def _init_(self):
+        self.head = Node(None)
+        self.size = 0
+ 
+    def isEmpty(self):
+        return self.size == 0
+ 
+    def push(self, data):
+        temp = Node(data)
+        temp.next = self.head.next
+        self.head.next = temp
+        self.size += 1
+   
+    def pop(self):
+        if self.isEmpty():
+            print("Stack Empty")
+        delete = self.head.next
+        self.head.next = self.head.next.next
+        self.size -= 1
+        return delete.data
+ 
+    def displayStack(self):
+        iter = self.head.next
+        print("Stack : ", end="")
+        while iter:
+            print(iter.data, end="\t")
+            iter = iter.next
+        print()
+ 
+    def _del_(self):
+        if not self.isEmpty():
+            iter = self.head
+            while iter:
+                temp = iter.next
+                del iter
+                self.size -= 1
+                iter = temp              
+ 
+s = Stack()
+for i in range(1, 11):
+    s.push(i)
+ 
+s.displayStack()
+ 
+for i in range(1, 3):
+    delete = s.pop()
+    print(f"Popped element : {delete}")
+ 
+s.displayStack()
+
+#########################question 2########################
+class Rectangle:
+    def __init__(self):
+        self.length = 0
+        self.width = 0
+ 
+    def setData(self, length, width):
+        self.length = length
+        self.width = width
+   
+    def CalculateArea(self):
+        return self.length * self.width
+ 
+class RectangeP:
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+ 
+    def calcArea(self):
+        return self.length * self.width
+ 
+r1 = Rectangle()
+r1.setData(50, 60)
+print(f"Area of default constructor rectange : {r1.CalculateArea()}")
+r2 = RectangeP(70, 80)
+print(f"Area of parameterized constructor rectange : {r2.CalculateArea()}")
+
+###########################question 3################################
+class Queue:
+ 
+    def __init__(self):
+        self.queue = []
+ 
+    def enqueue(self, item):
+        self.queue.append(item)
+ 
+    def dequeue(self):
+        if len(self.queue) < 1:
+            return None
+        return self.queue.pop(0)
+ 
+    def display(self):
+        print(self.queue)
+ 
+    def size(self):
+        return len(self.queue)
+ 
+ 
+q = Queue()
+q.enqueue(1)
+q.enqueue(2)
+q.enqueue(3)
+q.enqueue(4)
+q.enqueue(5)
+ 
+q.display()
+q.dequeue()
+ 
+print("After removing an element")
+q.display()
